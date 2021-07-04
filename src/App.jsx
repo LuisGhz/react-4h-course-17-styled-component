@@ -4,17 +4,61 @@ import MyHeader from 'elements/MyHeader';
 import MySection from 'elements/MySection';
 import MaterialButton from 'elements/MaterialButton'
 import MyButtonTheme from 'elements/MyButtonTheme';
+import PageWrapper from 'elements/PageWrapper';
 import { GreenTheme } from 'theme/theme';
+import { useState } from 'react';
 
 function App() {
+  const pages = [
+    {
+      title: 'page1',
+      buttons: [
+        { text: 'next' }
+      ]
+    },
+    {
+      title: 'page2',
+      buttons: [
+        { text: 'prev' },
+        { text: 'next' }
+      ]
+    },
+    {
+      title: 'page3',
+      buttons: [
+        { text: 'prev' },
+        { text: 'next' }
+      ]
+    },
+    {
+      title: 'page4',
+      buttons: [
+        { text: 'prev' },
+        { text: 'next' }
+      ]
+    },
+    {
+      title: 'page5',
+      buttons: [
+        { text: 'prev' }
+      ]
+    },
+  ];
+  const [id, setId] = useState(0);
+  let pageDisplay = pages[id];
   return (
     <ThemeProvider theme={ GreenTheme } >
       <MySection>
-        <MyHeader>My header</MyHeader>
-        <MyButton primary >My button</MyButton>
+        <MyHeader>{ pageDisplay.title }</MyHeader>
+        <PageWrapper pid={ id } npages={ pages.length } >
+          { pageDisplay.buttons.map((button, i) => {
+            return <MyButton key={ i }>{ button.text }</MyButton>
+          })}
+        </PageWrapper>
+        {/* <MyButton primary >My button</MyButton>
         <MyButton>My button</MyButton>
         <MyButtonTheme>My button</MyButtonTheme>
-        <MaterialButton>Material button</MaterialButton>
+        <MaterialButton>Material button</MaterialButton> */}
       </MySection>
     </ThemeProvider>
   );
