@@ -46,13 +46,19 @@ function App() {
   ];
   const [id, setId] = useState(0);
   let pageDisplay = pages[id];
+  const go = index => {
+    if (id === 0 && index === 0) setId(id + 1)
+    else if (index === 0) setId(id - 1);
+    else setId(id + 1);
+  }
+
   return (
     <ThemeProvider theme={ GreenTheme } >
       <MySection>
         <MyHeader>{ pageDisplay.title }</MyHeader>
         <PageWrapper pid={ id } npages={ pages.length } >
           { pageDisplay.buttons.map((button, i) => {
-            return <MyButton key={ i }>{ button.text }</MyButton>
+            return <MyButton key={ i } onClick={ () => go(i) } >{ button.text }</MyButton>
           })}
         </PageWrapper>
         {/* <MyButton primary >My button</MyButton>
