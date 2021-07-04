@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <MySection>
         <MyHeader>My header</MyHeader>
+        <MyButton primary >My button</MyButton>
         <MyButton>My button</MyButton>
       </MySection>
     </div>
